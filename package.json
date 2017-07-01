@@ -1,0 +1,25 @@
+{
+  "name": "blog-app-mongoose-challenge",
+  "version": "1.0.0",
+  "description": "blog-app-mongoose-challenge",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ms-vague/blog-app-mongoose-challenge.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.12.4",
+    "mongoose": "^4.7.1",
+    "morgan": "^1.7.0",
+    "uuid": "^2.0.3"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ms-vague/blog-app-mongoose-challenge/issues"
+  },
+  "homepage": "https://github.com/ms-vague/blog-app-mongoose-challenge#readme"
+}
