@@ -10,16 +10,16 @@
     "type": "git",
     "url": "git+https://github.com/ms-vague/blog-app-mongoose-challenge.git"
   },
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.12.4",
-    "mongoose": "^4.7.1",
-    "morgan": "^1.7.0",
-    "uuid": "^2.0.3"
-  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ms-vague/blog-app-mongoose-challenge/issues"
   },
-  "homepage": "https://github.com/ms-vague/blog-app-mongoose-challenge#readme"
+  "homepage": "https://github.com/ms-vague/blog-app-mongoose-challenge#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.0",
+    "morgan": "^1.8.2",
+    "uuid": "^3.1.0"
+  }
 }
