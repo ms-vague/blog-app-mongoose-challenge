@@ -27,6 +27,7 @@ app.get('/posts', (req, res) => {
     });
 });
 
+// ASK BEN ABOUT POST AND ERR //
 app.get('/posts/:id', (req, res) => {
   BlogPost
     .findById(req.params.id)

@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const blogPostSchema = mongoose.Schema({
 	author: {
 		firstName: String,
-		lastName: string
+		lastName: String
 	},
 	title: {type: String, required: true},
 	content: {type: String},
-	created: {type: Date, default: Data.now}
+	created: {type: Date, default: Date.now}
 });
 
 blogPostSchema.virtual('authorName').get(function() {
