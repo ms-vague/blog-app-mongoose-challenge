@@ -1,4 +1,4 @@
-const bodyParser = require('bodyParser');
+const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -13,43 +13,43 @@ app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
 
-app.get('/posts/:id', (req, res) => {
-	BlogPost
-	.find()
-	.exec()
-	.then(posts => {
-		res.json(posts.map(post => post.apiRepr()));
-	})
-	.catch(err => {
-		console.error(err);
-		res.status(500).json({error: 'i have a bad feeling about this'})
-	})
+
+app.get('/posts', (req, res) => {
+  BlogPost
+    .find()
+    .exec()
+    .then(posts => {
+      res.json(posts.map(post => post.apiRepr()));
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
 });
 
-// ASK ABOUT THEN //
 app.get('/posts/:id', (req, res) => {
-	BlogPost
-	.findById(req.params.id)
-	.exec()
-	.then(post => res.json(post.apiRepr()))
-	.catch(err => {
-		console.error(err);
-		res.status(500).json({error: 'i\'ve made a huge mistake'});
-	});
+  BlogPost
+    .findById(req.params.id)
+    .exec()
+    .then(post => res.json(post.apiRepr()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went horribly awry'});
+    });
 });
 
 app.post('/posts', (req, res) => {
-	const requiredFields = ['title', 'content', 'author'];
-		for (let i = 0; i < requiredFields.length; i++) {
-			const field = requiredFields[i];
-	    if (!(field in req.body)) {
-	      const message = `Missing \`${field}\` in request body`
-	      console.error(message);
-	      return res.status(400).send(message);
-		}
-	}
+  const requiredFields = ['title', 'content', 'author'];
+  for (let i=0; i<requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
 
-	BlogPost
+  BlogPost
     .create({
       title: req.body.title,
       content: req.body.content,
@@ -59,8 +59,10 @@ app.post('/posts', (req, res) => {
     .catch(err => {
         console.error(err);
         res.status(500).json({error: 'Something went wrong'});
-    }); 
+    });
+
 });
+
 
 app.delete('/posts/:id', (req, res) => {
   BlogPost
@@ -154,8 +156,10 @@ function closeServer() {
   });
 }
 
+// if server.js is called directly (aka, with `node server.js`), this block
+// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
-	runServer().catch(err => console.error(err));
+  runServer().catch(err => console.error(err));
 };
 
 module.exports = {runServer, app, closeServer};
